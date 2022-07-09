@@ -6,11 +6,16 @@ const app = require('./app');
 const debug = require('debug')('image-server:server');
 const http = require('http');
 
+const fs = require('fs');
+
+// load config file
+const config = JSON.parse(fs.readFileSync('./config.json'));
+
 /**
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(config.port || '3000');
 app.set('port', port);
 
 /**
